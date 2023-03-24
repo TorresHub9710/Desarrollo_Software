@@ -40,9 +40,13 @@ public class ManejadorBolsa {
             System.out.println("0. Salir");
             System.out.print("Seleccione una de las opciones del menú: ");
             opcion = Integer.parseInt(teclado.nextLine());
+
             switch (opcion){
 
                 case 1:
+                    /*
+                    * AGREGAR NUEVO ASPIRANTE.
+                    */
                     System.out.print("Ingrese el número de cédula del aspirante: ");
                     String cedula = teclado.nextLine();
                     System.out.print("Ingrese el nombre del aspirante: ");
@@ -61,6 +65,9 @@ public class ManejadorBolsa {
                     break;
 
                 case 2:
+                    /*
+                     * MOSTRAR CÉDULAS DE ASPIRANTES QUE HAY EN LA BASE DE DATOS.
+                     */
                     int i = 1;
                     for (Aspirante a: listaAspirantes){
                         System.out.println("Cédula " + i + ": " + a.getCedula());
@@ -69,6 +76,10 @@ public class ManejadorBolsa {
                     break;
 
                 case 3:
+                    /*
+                     * ENCONTRAR INFORMACIÓN DETALLADA DEL ASPIRANTE A PARTIR DE
+                       SU NÚMERO DE CÉDULA ("LLAVE PRIMARIA").
+                     */
                     System.out.print("Ingrese el número de cédula que quiere buscar: ");
                     String cedulaBuscar = teclado.nextLine();
                     Aspirante aspiranteBuscado = listaAspirantes.queryForId(cedulaBuscar);
@@ -86,6 +97,10 @@ public class ManejadorBolsa {
                     break;
 
                 case 4:
+                    /*
+                     * ENCONTRAR LA CÉDULA DE UN ASPIRANTE (PARA POSTERIORMENTE HALLAR
+                       INFORMACIÓN DETALLADA) MEDIANTE SU NOMBRE.
+                     */
                     System.out.print("Ingrese el nombre que desee buscar: ");
                     String nombreBuscado = teclado.nextLine().toLowerCase();
                     LinkedList<Aspirante> aspirantesEncontrados = new LinkedList<>();
@@ -111,6 +126,9 @@ public class ManejadorBolsa {
                     break;
 
                 case 5:
+                    /*
+                     * ORDENAR ASPIRANTES DE LA BASE DE DATOS POR SU EDAD.
+                     */
                     LinkedList<Integer> aspirantesEdad = new LinkedList<>();
                     for (Aspirante a : listaAspirantes){
                         aspirantesEdad.add(a.getEdad());
@@ -144,6 +162,9 @@ public class ManejadorBolsa {
                     break;
 
                 case 6:
+                    /*
+                     * ORDENAR ASPIRANTES POR SU EXPERIENCIA (EN AÑOS).
+                     */
                     LinkedList<Integer> aspirantesExperiencia = new LinkedList<>();
                     for (Aspirante a : listaAspirantes){
                         aspirantesExperiencia.add(a.getExperiencia());
@@ -177,9 +198,12 @@ public class ManejadorBolsa {
                     break;
 
                 case 7:
+                    /*
+                     * ORDENAR ASPIRANTES POR SU PROFESIÓN
+                     */
                     LinkedList<String> aspirantesProfesion = new LinkedList<>();
                     for (Aspirante a : listaAspirantes){
-                        aspirantesProfesion.add(a.getProfesion());
+                        aspirantesProfesion.add(a.getProfesion().toLowerCase());
                     }
                     Collections.sort(aspirantesProfesion);
 
@@ -187,7 +211,7 @@ public class ManejadorBolsa {
                     int prof = 0;
                     for (i = 0; i < aspirantesProfesion.size(); i++){
                         for (Aspirante b : listaAspirantes){
-                            if (b.getProfesion().equals(aspirantesProfesion.get(prof)) ){
+                            if (b.getProfesion().toLowerCase().equals(aspirantesProfesion.get(prof)) ){
                                 aspirantesOrdenados.add(b);
                             }
                         }
@@ -211,6 +235,9 @@ public class ManejadorBolsa {
                     break;
 
                 case 8:
+                    /*
+                     * MOSTRAR EL/LOS ASPIRANTES CON MAYOR EXPERIENCIA.
+                     */
                     aspirantesExperiencia = new LinkedList<>();
                     for (Aspirante a : listaAspirantes){
                         aspirantesExperiencia.add(a.getExperiencia());
@@ -239,6 +266,9 @@ public class ManejadorBolsa {
                     break;
 
                 case 9:
+                    /*
+                     * MOSTRAR EL/LOS ASPIRANTES MÁS JÓVENES.
+                     */
                     aspirantesEdad = new LinkedList<>();
                     for (Aspirante a : listaAspirantes){
                         aspirantesEdad.add(a.getEdad());
@@ -268,6 +298,10 @@ public class ManejadorBolsa {
                     break;
 
                 case 10:
+                    /*
+                     * CONTRATAR ASPIRANTE (ELIMINAR DE LA BOLSA)
+                       POR MEDIO DE SU CÉDULA (LLAVE PRIMARIA)
+                     */
                     System.out.print("Ingrese la cédula del aspirante que desea contratar: ");
                     String cedulaContratado = teclado.nextLine();
 
@@ -286,6 +320,10 @@ public class ManejadorBolsa {
                     break;
 
                 case 11:
+                    /*
+                     * ELIMINAR ASPIRANTES DE LA BOLSA QUE TENGAN UNA
+                       EXPERIENCIA MENOR A LA INDICADA.
+                     */
                     System.out.print("Ingrese la experiencia mínima que deben tener los aspirantes" +
                             " que se encuentran dentro de la bolsa de empleo: ");
 
@@ -299,6 +337,9 @@ public class ManejadorBolsa {
                     break;
 
                 case 12:
+                    /*
+                     * PROMEDIO DE EDAD DE LOS ASPIRANTES
+                     */
                     int numeroAspirantes = 0;
                     int sumaEdades = 0;
 
